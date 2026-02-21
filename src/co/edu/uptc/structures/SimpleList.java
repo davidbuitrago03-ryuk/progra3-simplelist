@@ -81,6 +81,11 @@ public class SimpleList<T> implements List<T> {
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
+		
+		if (c == null) {
+			throw new NullPointerException();
+		}
+
 		if (head == null) {
 			return false;
 
