@@ -300,10 +300,34 @@ public void add(int index, T element) {
     }
 
 	@Override
-	public T remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public T remove(int index) {
+        if (index < 0 || isEmpty()) {
+            return null;
+        }
+        
+        if (index == 0) {
+            T data = head.getValue();
+            head = head.getNext();
+            return data;
+        }
+        Node<T> current = head;
+        int currentPosition = 0;
+        
+        while (current.getNext() != null && currentPosition < index - 1) {
+            current = current.getNext();
+            currentPosition++;
+        }
+        
+        if (current.getNext() == null) {
+            return null;
+        }
+        
+        T data = current.getNext().getValue();
+        
+        current.setNext(current.getNext().getNext());
+        
+        return data;
+    }
 
 	@Override
 	public int indexOf(Object o) {
