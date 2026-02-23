@@ -28,8 +28,7 @@ public class SimpleList<T> implements List<T> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return head == null;
 	}
 
 	@Override
