@@ -193,8 +193,26 @@ public class SimpleList<T> implements List<T> {
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean modified = false;
+		while (head != null && !c.contains(head.getValue())) {
+			head = head.getNext();
+			modified = true;
+		}
+		if (head == null) {
+			return modified;
+		}
+		Node<T> prev = head;
+		Node<T> current = head.getNext();
+		while (current != null) {
+			if (!c.contains(current.getValue())) {
+				prev.setNext(current.getNext());
+				modified = true;
+			} else {
+				prev = current;
+			}
+			current = current.getNext();
+		}
+		return modified;
 	}
 
 	@Override
